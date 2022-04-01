@@ -1,30 +1,39 @@
+import { Feather } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import warehouse from './assets/warehouse.jpg';
-import Stock from './components/Stock';
+import Home from "./components/Home";
+import Pick from "./components/Pick";
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Base, Typography } from './styles/index.js'; 
+
+
+const Tab = createBottomTabNavigator();
+const routeIcons = {
+  "Lager": "home",
+  "Plock": "box",
+};
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.base}>
-        <Text style={{ color: '#33c', fontSize: 42, textAlign: 'center'}}>Lager-Appen</Text>
-        <Image source={warehouse} style={{ width: 320, height: 240, alignSelf: 'center' }} />
-        <Stock />
-        <StatusBar style="auto" />
-      </View>
+    <SafeAreaView style={Base.container}>
+      <NavigationContainer>
+      <Tab.Navigator screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) => {
+          let iconName = routeIcons[route.name] || "alert";
+
+          return <Feather name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: 'green',
+        tabBarInactiveTintColor: 'gray',
+      })}
+    >
+          <Tab.Screen name="Lager" component={Home} />
+          <Tab.Screen name="Plock" component={Pick} />
+        </Tab.Navigator>
+      </NavigationContainer>
+      <StatusBar style="auto" />
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  base: {
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingLeft: 12,
-    paddingRight: 12,
-  }
-});
