@@ -1,48 +1,42 @@
-import { useState, useEffect, useCallback } from 'react';
 import config from "../config/config.json";
-import OrderList from "../components/OrderList"
+import OrderItem from "../interfaces/order_item";
+import Order from "../interfaces/order";
+import productsModel from './product';
 
 const orders = {
-    getOrders: async function getOrders() {
+    getOrders: async function getOrders(): Promise<Order[]>{
+        console.log("get orders");
         const response = await fetch(`${config.base_url}/orders?api_key=${config.api_key}`);
         const result = await response.json();
 
         return result.data;
     },
-    pickOrder: async function pickOrder(order_info) {
-
-        function callbackFunction() {
-            console.log("Had benn loaded");
-        }
-            
-        // TODO: Minska lagersaldo för de
-        // Hämta specefika ordern
-        // Hämta alla produkt id samt antal
-        // Uppdatera lagret / i produkter
-        var items_array_length = order_info.order_items.length();
-
-        for (let index = 0; items_array_length; index++) {
-            var product = {
-                id: order_info.order_items[index].id,
-                name: order_info.order_items[index].name,
-                stock: order_info.order_items[index].stock,
-                api_key: config.api_key
+    pickOrder: async function pickOrder(order: Partial<Order>) {
+        console.log("Pick orders");
+        console.log(order.order_items)
+        await Promise.all(order.order_items.map(async (order_item:
+        Partial<OrderItem>) => {
+            let updateProduct = {
+                id: order_item.product_id,
+                name: order_item.name,
+                api_key: config.api_key,
+                stock: order_item.stock - order_item.amount
             };
-            var json = JSON.stringify(product);
-            
-            var request = new XMLHttpRequest();
-            request.addEventListener("load", callbackFunction);
-            request.open("PUT", "https://lager.emilfolino.se/v2/products");
-            request.setRequestHeader('Content-type','application/json; charset=utf-8');
-            request.send(json);
 
-        } 
+            console.log(updateProduct)
 
-        // TODO: Ändra status för ordern till packad
-        // Hämta order id, namn
-        // skriv in order_status till 200
-        // skicka med eget api
-        // Skicka en PUT request
+            await productsModel.updateProducts(updateProduct);
+        }));
+
+        await orders.updateOrderStatus(order);
+    },
+
+    updateOrderStatus: async function updateOrderStatus(order_info: Partial<Order>) {
+        console.log("Update order status to 200 Packad");
+        function callbackFunction() {
+            console.log("Had been loaded");
+        }
+
         var order = {
             id: order_info.id,
             name: order_info.name,
@@ -50,14 +44,17 @@ const orders = {
             api_key: config.api_key
         };
         var json = JSON.stringify(order);
-        
+        console.log("---------------------------------------");
+        console.log(order);
+        console.log("---------------------------------------");
+
         var request = new XMLHttpRequest();
         request.addEventListener("load", callbackFunction);
         request.open("PUT", "https://lager.emilfolino.se/v2/orders");
         request.setRequestHeader('Content-type','application/json; charset=utf-8');
         request.send(json);
         return;
-    }
+    },
 };
 
 export default orders;
