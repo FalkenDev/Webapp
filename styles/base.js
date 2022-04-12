@@ -1,8 +1,5 @@
-// Styles
+import { reloadAsync } from "expo-updates"
 
-// App.tsx
-
-// Home.tsx
 export const container = {
     flex: 1,
 }
@@ -24,8 +21,10 @@ export const products = {
     fontSize: 18,
     paddingTop: 5,
 }
-// Pick.tsx
 
-// PickList.tsx
-
-// OrderList.tsx
+export const details_button = {
+    marginLeft: 0,
+    width: 100,
+    color: '#211',
+    marginTop: 100,
+}
