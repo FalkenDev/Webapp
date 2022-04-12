@@ -1,4 +1,5 @@
 interface OrderItem {
+    api_key: string,
     product_id: number,
     amount: number,
     article_number: string,

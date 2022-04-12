@@ -12,6 +12,4 @@ interface Order {
     order_items: Array<OrderItem>,
 }
 
-async function pickOrder(order: Partial<Order>) {
-
-}
+export default Order
