@@ -1,12 +1,12 @@
 import { Feather } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Home from "./components/Home";
 import Pick from "./components/Pick";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Base, Typography } from './styles/index.js'; 
+import { Base } from './styles/index.js'; 
+import { useState } from 'react';
 
 
 const Tab = createBottomTabNavigator();
@@ -16,6 +16,8 @@ const routeIcons = {
 };
 
 export default function App() {
+  const [products, setProducts] = useState([]);
+  console.log("app.tsx");
   return (
     <SafeAreaView style={Base.container}>
       <NavigationContainer>
@@ -29,8 +31,13 @@ export default function App() {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-          <Tab.Screen name="Lager" component={Home} />
-          <Tab.Screen name="Plock" component={Pick} />
+          <Tab.Screen name="Lager">
+            {() => <Home products={products} setProducts={setProducts}
+            ></Home>}
+          </Tab.Screen>
+          <Tab.Screen name="Plock">
+            {() => <Pick setProducts={setProducts}/>}
+          </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
