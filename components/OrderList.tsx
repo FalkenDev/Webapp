@@ -1,16 +1,29 @@
 import { useState, useEffect } from 'react';
 import { View, Text, Button } from "react-native";
-import config from "./../config/config.json";
-import { Typography } from '../styles/index.js'; 
+import { Typography } from '../styles/index.js';
+import orderModel from "../models/orders"
 
-export default function OrderList({ navigation }) {
+export default function OrderList({ route, navigation }) {
+    console.log("OrderList")
+    const { reload } = route.params || true;
+    console.log(route.params)
+    console.log(reload)
     const [allOrders, setAllOrders] = useState([]);
 
+    if(reload) {
+        console.log("reloading time!");
+        reloadOrders();
+        route.params = false;
+    }
+
+    async function reloadOrders() {
+        setAllOrders(await orderModel.getOrders());
+    }
+
     useEffect(() => {
-        fetch(`${config.base_url}/orders?api_key=${config.api_key}`)
-          .then(response => response.json())
-          .then(result => setAllOrders(result.data));
+        reloadOrders();
     }, []);
+
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")
         .map((order, index) => {
