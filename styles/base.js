@@ -14,8 +14,8 @@ export const base = {
 export const viewDelivery = {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 11,
+    marginBottom: 11,
     paddingLeft: 12,
     paddingRight: 12,
     height:100,
