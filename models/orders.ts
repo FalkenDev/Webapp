@@ -5,14 +5,14 @@ import productsModel from './product';
 
 const orders = {
     getOrders: async function getOrders(): Promise<Order[]>{
-        console.log("get orders");
+        console.log("------| Get orders |------");
         const response = await fetch(`${config.base_url}/orders?api_key=${config.api_key}`);
         const result = await response.json();
 
         return result.data;
     },
     pickOrder: async function pickOrder(order: Partial<Order>) {
-        console.log("Pick orders");
+        console.log("------| Pick orders |------");
         console.log(order.order_items)
         await Promise.all(order.order_items.map(async (order_item:
         Partial<OrderItem>) => {
@@ -32,7 +32,7 @@ const orders = {
     },
 
     updateOrderStatus: async function updateOrderStatus(order_info: Partial<Order>) {
-        console.log("Update order status to 200 Packad");
+        console.log("------| Update order |------");
         function callbackFunction() {
             console.log("Had been loaded");
         }
