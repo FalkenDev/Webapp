@@ -4,12 +4,22 @@ export const title = {
     textAlign: 'center',
 };
 
-// stock.tsx
 export const header2 = {
     color: '#333',
     fontSize: 24,
     borderBottomWidth: 2,
     borderLeftColor: 'black',
+    marginTop: 10,
+}
+
+export const label = {
+    color: '#333',
+    fontSize: 20,
+    marginTop: 10,
+}
+export const labelDate = {
+    color: '#333',
+    fontSize: 16,
     marginTop: 10,
 }
 
@@ -34,4 +44,6 @@ export const warning = {
     marginTop: 10,
     textAlign: 'center',
     marginLeft: 0,
+    marginTop: 5,
+    marginBottom: 5,
 }
