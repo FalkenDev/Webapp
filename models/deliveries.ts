@@ -14,7 +14,7 @@ const deliveries = {
     addDelivery: async function addDelivery(delivery: Partial<Delivery>){
         console.log("------| Adding Delivery to API |------");
         function callbackFunction() {
-            console.log("------| Deliveries Has been loaded |------");
+            console.log("------| Deliveries has been loaded |------");
         }
 
         var deliveryItem = {
