@@ -21,7 +21,7 @@ const storage = {
             const jsonValue = await AsyncStorage.getItem("@token");
             return jsonValue != null ? JSON.parse(jsonValue) : null;
         } catch (e) {
-            // Error
+            // Errors
         }
     },
     deleteToken: async function deleteToken() {
