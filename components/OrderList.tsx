@@ -4,10 +4,8 @@ import { Typography } from '../styles/index.js';
 import orderModel from "../models/orders"
 
 export default function OrderList({ route, navigation }) {
-    console.log("OrderList")
+    console.log("------| OrderList |------")
     const { reload } = route.params || true;
-    console.log(route.params)
-    console.log(reload)
     const [allOrders, setAllOrders] = useState([]);
 
     if(reload) {
