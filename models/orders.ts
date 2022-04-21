@@ -11,6 +11,13 @@ const orders = {
 
         return result.data;
     },
+    getOrder: async function getOrder(order_id: number) {
+        console.log("------| Get specific order |------");
+        const response = await fetch(`${config.base_url}/orders/${order_id}?api_key=${config.api_key}`);
+        const result = await response.json();
+
+        return result.data;
+    },
     pickOrder: async function pickOrder(order: Partial<Order>) {
         console.log("------| Pick orders |------");
         console.log(order.order_items)
@@ -40,7 +47,7 @@ const orders = {
         var order = {
             id: order_info.id,
             name: order_info.name,
-            status_id: 200,
+            status_id: order_info.status_id,
             api_key: config.api_key
         };
         var json = JSON.stringify(order);
