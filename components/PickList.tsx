@@ -14,6 +14,7 @@ export default function PickList({ route, navigation, setProducts }) {
     }, []);
 
     async function pick() {
+        order.status_id = 200;
         await orderModel.pickOrder(order);
         setProducts(await productModel.getProducts());
         navigation.navigate("List", { reload: true });
