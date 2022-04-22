@@ -54,9 +54,6 @@ const invoices = {
             },
             method:'POST'
         });
-        console.log("---respons---");
-        console.log(respons);
-        console.log("------");
         } catch (error) {
             console.log(error);
         }
