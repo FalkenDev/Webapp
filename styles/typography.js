@@ -16,6 +16,7 @@ export const label = {
     color: '#333',
     fontSize: 20,
     marginTop: 10,
+    marginLeft: 10,
 }
 export const labelDate = {
     color: '#333',
