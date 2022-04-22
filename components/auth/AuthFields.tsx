@@ -4,10 +4,10 @@ import { Typography, Forms, Base } from "../../styles";
 export default function AuthFields({ auth, setAuth, title, submit, navigation}) {
     return (
     <View>
-        <Text>{title}</Text>
+        <Text style={Typography.header2}>{title}</Text>
 
-        <Text>E-post</Text>
-        <TextInput
+        <Text style={Typography.label}>E-post</Text>
+        <TextInput style={Forms.input}
             onChangeText={(content:string) => {
                 setAuth({...auth, email: content})
             }}
@@ -18,8 +18,8 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation}) 
             autoCorrect={false}
         />
 
-        <Text>Lössenord</Text>
-        <TextInput
+        <Text style={Typography.label}>Lössenord</Text>
+        <TextInput style={Forms.input}
             onChangeText={(content:string) => {
                 setAuth({...auth, password: content})
             }}
@@ -30,7 +30,7 @@ export default function AuthFields({ auth, setAuth, title, submit, navigation}) 
             autoCorrect={false}
         />
 
-        <Button
+        <Button style={Forms.button}
             title={title}
             onPress={() => {
                 submit();
