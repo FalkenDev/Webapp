@@ -63,6 +63,7 @@ export default function InvoicesList({ route, navigation, setIsLoggedIn }) {
                     navigation.navigate('Form');
                 }}
             />
+            <Text></Text>
             <Button
                 title="Logga ut"
                 onPress={async () => {
