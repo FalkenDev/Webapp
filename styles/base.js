@@ -1,5 +1,3 @@
-import { reloadAsync } from "expo-updates"
-
 export const container = {
     flex: 1,
 }
