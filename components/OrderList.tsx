@@ -25,7 +25,8 @@ export default function OrderList({ route, navigation }) {
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")
         .map((order, index) => {
-            return <Button
+            return(
+            <Button
                 title={order.name}
                 key={index}
                 onPress={() => {
@@ -33,7 +34,7 @@ export default function OrderList({ route, navigation }) {
                         order: order
                     });
                 }}
-            />
+            />)
         });
 
     return (
