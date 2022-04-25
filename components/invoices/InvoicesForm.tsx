@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import {Platform, ScrollView, Text, TextInput, Button, View } from "react-native";
-import { Base, Typography, Forms } from '../styles/index';
+import { Base, Typography, Forms } from '../../styles/index';
 
 import { Picker } from '@react-native-picker/picker';
-import Order from "../interfaces/order";
-import orderModel from '../models/orders'
+import Order from "../../interfaces/order";
+import orderModel from '../../models/orders'
 import DateTimePicker from '@react-native-community/datetimepicker';
-import Invoices from '../interfaces/invoice';
-import InvoicesModel from '../models/invoices';
+import Invoices from '../../interfaces/invoice';
+import InvoicesModel from '../../models/invoices';
 
 export default function InvoicesForm({ route, navigation }) {
     const [invoice, setInvoice] = useState<Partial<Invoices>>({});

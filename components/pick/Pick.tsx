@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import OrderList from '../components/OrderList';
-import PickList from '../components/PickList';
+import OrderList from '../pick/OrderList';
+import PickList from '../pick/PickList';
 
 const Stack = createNativeStackNavigator();
 

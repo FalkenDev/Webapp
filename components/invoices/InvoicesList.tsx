@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Text, Button } from "react-native";
 import { DataTable } from 'react-native-paper';
-import { Base, Typography } from '../styles/index';
-import invoiceModel from "../models/invoices"
-import authModel from "../models/auth";
-import Invoice from '../interfaces/invoice';
+import { Base, Typography } from '../../styles/index';
+import invoiceModel from "../../models/invoices"
+import authModel from "../../models/auth";
+import Invoice from '../../interfaces/invoice';
 
 export default function InvoicesList({ route, navigation, setIsLoggedIn }) {
     console.log("------| InvoicesList |------")

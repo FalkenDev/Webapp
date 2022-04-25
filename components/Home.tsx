@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Image, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import warehouse from '../assets/warehouse.jpg';
-import Stock from '../components/Stock';
+import Stock from './stock/Stock';
 import { Base, Typography } from '../styles/index.js'; 
 
 export default function Home({route, products, setProducts}) {
