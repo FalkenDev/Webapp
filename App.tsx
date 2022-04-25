@@ -1,16 +1,18 @@
 import { Feather } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Home from './components/Home';
-import Pick from './components/pick/Pick';
-import Delivery from './components/delivery/Deliveries';
-import Invoices from './components/invoices/Invoices';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Base } from './styles/index.js'; 
 import { useEffect, useState } from 'react';
 
+import Home from './components/Home';
+import Pick from './components/pick/Pick';
+import Delivery from './components/delivery/Deliveries';
+import Invoices from './components/invoices/Invoices';
 import Auth from "./components/auth/Auth";
+import Ship from "./components/ship/Ship";
+
 import authModel from "./models/auth";
 
 
@@ -21,6 +23,7 @@ const routeIcons = {
   "Inleveranser": "plus-circle",
   "Faktura": "printer",
   "Logga in": "user",
+  "Leverans": "map",
 };
 
 export default function App() {
@@ -56,6 +59,9 @@ export default function App() {
           </Tab.Screen>
           <Tab.Screen name="Inleveranser">
             {() => <Delivery setProducts={setProducts}/>}
+          </Tab.Screen>
+          <Tab.Screen name="Leverans">
+            {() => <Ship/>}
           </Tab.Screen>
           {isLoggedIn
             ?<Tab.Screen name="Faktura">
