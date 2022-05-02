@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Base } from './styles/index.js'; 
 import { useEffect, useState } from 'react';
+import FlashMessage from 'react-native-flash-message';
 
 import Home from './components/Home';
 import Pick from './components/pick/Pick';
@@ -74,6 +75,7 @@ export default function App() {
         </Tab.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
+      <FlashMessage position="top"/>
     </SafeAreaView>
   );
 }
