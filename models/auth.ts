@@ -25,7 +25,21 @@ const auth = {
                 'content-type': 'application/json'
             }
         });
-        return await respons.json();
+        const result = await respons.json();
+
+        if(Object.prototype.hasOwnProperty.call(result, "errors")) {
+            return {
+                message: result.errors.title,
+                description: result.errors.detail,
+                type: "danger"
+            }
+        }
+        await storage.storeToken(result.data.token);
+        return {
+            message: "Registered",
+            description: result.data.message,
+            type: "success"
+        }
     },
 
     login: async function login(email:string, password:string) {
@@ -45,8 +59,20 @@ const auth = {
         });
         
         const result = await respons.json();
+
+        if(Object.prototype.hasOwnProperty.call(result, "errors")) {
+            return {
+                message: result.errors.title,
+                description: result.errors.detail,
+                type: "danger"
+            }
+        }
         await storage.storeToken(result.data.token);
-        return result.data.message;
+        return {
+            message: "Inloggad",
+            description: result.data.message,
+            type: "success"
+        }
     },
 
     logout: async function logout() {
