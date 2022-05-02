@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {Platform, ScrollView, Text, TextInput, Button, View } from "react-native";
 import { Base, Typography, Forms } from '../../styles/index';
-
+import { showMessage } from "react-native-flash-message";
 import { Picker } from '@react-native-picker/picker';
 import Product from "../../interfaces/product";
 import productModel from '../../models/product'
@@ -12,6 +12,29 @@ import deliveryModel from '../../models/deliveries'
 export default function DeliveryForm({ route, navigation, setProducts }) {
     const [delivery, setDelivery] = useState<Partial<Delivery>>({});
     const [currentProduct, setCurrentProduct] = useState<Partial<Product>>({});
+
+    function validateAmountProducts(number: number) {
+        const minAmount = 1
+        if (number < minAmount) {
+            showMessage({
+                message:"Invalid amount of products",
+                description: "Please enter a number that are higher then zero.",
+                type: "warning"
+            })
+        }
+    }
+
+    function validateComment(text: string) {
+        console.log("correct");
+        const minLength = 5;
+        if (text.length < minLength) {
+            showMessage({
+                message:"Invalid comment",
+                description: "Please enter atlest 5 characters in comment.",
+                type: "warning"
+            })
+        }
+    }
 
     async function addDelivery() {
         await deliveryModel.addDelivery(delivery);
@@ -108,6 +131,7 @@ export default function DeliveryForm({ route, navigation, setProducts }) {
             <TextInput
                 style={ Forms.input }
                 onChangeText={(content: string) => {
+                    validateComment(content);
                     setDelivery({ ...delivery, comment: content });
                 }}
                 value={delivery?.comment}
@@ -117,6 +141,7 @@ export default function DeliveryForm({ route, navigation, setProducts }) {
             <TextInput
                 style={ Forms.input }
                 onChangeText={(content: string) => {
+                    validateAmountProducts(parseInt(content));
                     setDelivery({ ...delivery, amount: parseInt(content) });
                 }}
                 value={delivery?.amount?.toString()}
