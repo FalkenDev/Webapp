@@ -10,7 +10,7 @@ const products = [
 const setProducts = () => false;
 
 test('List should contain three items', async () => {
-    const { getByText, debug } = render(<StockList products={products} setProducts={setProducts} />);
+    const { getByText } = render(<StockList products={products} setProducts={setProducts} />);
 
     const shampoo = await getByText('Shampoo', { exact: false });
     const balsam = await getByText('Balsam', { exact: false });
@@ -19,6 +19,4 @@ test('List should contain three items', async () => {
     expect(shampoo).toBeDefined();
     expect(balsam).toBeDefined();
     expect(soap).toBeDefined();
-
-    debug("Stocklist component");
 });
