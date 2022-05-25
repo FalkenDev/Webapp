@@ -6,8 +6,6 @@ import PickList from '../pick/PickList';
 const Stack = createNativeStackNavigator();
 
 export default function Pick(props) {
-    console.log("list update")
-
     return (
         <Stack.Navigator initialRouteName="List">
             <Stack.Screen name="List" component={OrderList} />
